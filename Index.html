@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Tap Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #28a745; /* start green */
+      touch-action: manipulation;
+      user-select: none;
+      cursor: pointer;
+    }
+    #counter {
+      font-size: 120px;
+      font-weight: bold;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="counter">0</div>
+
+  <script>
+    let count = 0;
+    const counter = document.getElementById("counter");
+    const body = document.body;
+
+    function updateColor() {
+      if (count <= 7) {         // 0-7: green
+        body.style.backgroundColor = "#28a745";
+      } else if (count <= 14) { // 8-14: orange
+        body.style.backgroundColor = "#ff9900";
+      } else {                  // 15-21: red
+        body.style.backgroundColor = "#dc3545";
+      }
+    }
+
+    body.addEventListener("click", () => {
+      count = (count + 1) % 22; // cycles 0–21
+      counter.innerText = count;
+      updateColor();
+    });
+
+    // Initialize color
+    updateColor();
+  </script>
+</body>
+</html>
